@@ -1,11 +1,24 @@
-import Button from "./Button"
+
+import AddBookModal from "./AddBookModal"
+import { useState } from "react"
 
 function LibraryHeader() {
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const openModal = () => setIsModalOpen(true)
+    const closeModal = () => setIsModalOpen(false)
     return (
-        <div className="library-header">
+        <>
+            <div className="library-header">
             <h1>Your Library</h1>
-            <Button buttonName="Add Book" className="buttonOther" />
+            <button onClick={openModal} className="buttonOther">Add Book</button>
         </div>
+
+        {isModalOpen && (
+            <AddBookModal onClose={closeModal}/>
+        )}
+        </>
+
 )
 }
 
